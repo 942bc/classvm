@@ -2,9 +2,6 @@ package classfile
 
 import "fmt"
 
-type ConstantPool struct {
-}
-
 type AttributeInfo struct {
 }
 
@@ -107,8 +104,4 @@ func (self *ClassFile) SuperClassName() string {
 
 func (self *ClassFile) InterfaceNames() []string {
 
-}
-
-func readConstantPool(reader *ClassReader) ConstantPool {
-	return ConstantPool{}
 }

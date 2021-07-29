@@ -15,22 +15,17 @@ const (
 	CONSTANT_Utf8               = 1
 )
 
-type ConstantIntegerInfo struct {
-	tag   uint8
-	bytes int32
+type ConstantInfo interface {
+	readInfo(reader *ClassReader)
 }
 
-type ConstantLongInfo struct {
-	tag   uint8
-	bytes int64
+func readConstantInfo(reader *ClassReader, cp ConstantPool) ConstantInfo {
+	tag := reader.readUint8()
+	c := newConstantInfo(tag, cp)
+	c.readInfo(reader)
+	return c
 }
 
-type ConstantFloatInfo struct {
-	tag   uint8
-	bytes float32
-}
+func newConstantInfo(tag uint8, cp ConstantPool) ConstantInfo {
 
-type ConstantDoubleInfo struct {
-	tag   uint8
-	bytes float64
 }
